@@ -12,9 +12,7 @@ export default function Page(){
             <button className="btn" type="submit" onClick={()=>{
                 setPassword('')
             }}>Submit</button>
-            <p>Hello world</p>
-            <p>Iam good</p>
-            <p>Lets see it</p>
+
         </form>
     )
 }
