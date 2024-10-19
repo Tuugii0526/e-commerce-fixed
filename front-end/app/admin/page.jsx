@@ -13,6 +13,7 @@ export default function Page(){
                 setPassword('')
             }}>Submit</button>
             <p>Hello world</p>
+            <p>Iam good</p>
         </form>
     )
 }
