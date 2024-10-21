@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Fragment, useState } from "react"
 export const ErrorProfileTransition=()=>{
     const [isProfileOpen, setIsProfileOpen] = useState(false);
   const openProfile = () => {
