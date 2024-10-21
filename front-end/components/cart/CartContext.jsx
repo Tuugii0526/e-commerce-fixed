@@ -18,7 +18,7 @@ function cartReducer(state,action){
         newCart= cart.map(pro=>{
             if(pro?.id===product.id)
             {
-                return {...pro,count:pro.count++}
+                return {...pro,count:product.count++}
             }
             return pro
         })
