@@ -45,7 +45,7 @@ export const CartTransition=()=>{
         leaveTo="translate-x-full">
         <DialogPanel className={"fixed top-0 right-0 bottom-0 w-1/2 bg-white flex flex-col p-2"}>
         <div className="flex h-[80px] items-center">
-        <XMarkIcon onClick={closeCart} className="h-10"/>
+        <XMarkIcon onClick={closeCart} className="h-10 hover:pointer"/>
         </div>
         <Cart />
         </DialogPanel>
