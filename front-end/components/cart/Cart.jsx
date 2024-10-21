@@ -10,12 +10,17 @@ export const Cart=()=>{
     return <div className="flex flex-col items-center gap-2 overflow-y-scroll">
             {cart.map(pro=><div  key={pro?.id} className="w-3/4 flex justify-around">
                 {pro?.name}
-                <MinusIcon className="h-5 hover:cursor-pointer" onClick={()=>{
+
+                <div className="h-fit w-fit hover:cursor-pointer" onClick={()=>{
                     minusItem(pro)
-                }}/>
-                <PlusIcon className="h-5 hover:cursor-pointer" onClick={()=>{
+                }}>
+                <MinusIcon className="h-5 " />
+                </div>
+                <div className="h-fit w-fit hover:cursor-pointer" onClick={()=>{
                     addItem(pro)
-                }}/>
+                }}>
+                <PlusIcon className="h-5 " />
+                </div>
                 {pro?.count*pro?.price}
             </div>)}
             <p>Total amount :{totalAmount}$</p>
