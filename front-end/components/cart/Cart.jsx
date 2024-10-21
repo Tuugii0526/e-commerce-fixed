@@ -13,6 +13,7 @@ export const Cart=()=>{
                 }}/>
                 <PlusIcon className="h-5 hover:cursor-pointer" onClick={()=>{
                     addItem(pro)
+                    console.log('Iam working in addItem')
                 }}/>
                 {pro?.count*pro?.price}
             </div>)}
