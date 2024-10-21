@@ -13,20 +13,23 @@ function cartReducer(state,action){
     const {product}=action.payload;
     let newCart
     const ifExists=cart?.find(pro=>pro?.id===product?.id)
+    console.log('if exists is :',ifExists)
     if(ifExists)
     {
         newCart= cart.map(pro=>{
             if(pro?.id===product.id)
             {
-                return {...pro,count:product.count++}
+                return {...pro,count:pro.count++}
             }
             return pro
         })
+        console.log('IfExists true: ',ifExists)
     }
     else
     {
         const withCountProduct={...product,count:1}
         newCart= [...cart,withCountProduct]
+        console.log('ifExists is false:',ifExists)
     }
     const totalAm=newCart.map(pro=>pro?.count*pro?.price).reduce((pre,curr)=>pre+curr,0)
     return {...state,cart:newCart,totalAmount:totalAm}
@@ -37,7 +40,7 @@ function cartReducer(state,action){
     let newCart
     if(product?.count-1<=0)
     {
-        newCart= cart.filter(pro=>pro.id!==product.id)
+        newCart= cart.filter(pro=>pro.id===product.id)
     }
     else {
         newCart= cart.map(pro=>{
