@@ -1,17 +1,8 @@
-"use client";
+"use client"
 
-import { londrinaSketch } from "@/app/fonts/fonts";
-import {
-  Dialog,
-  DialogPanel,
-  Transition,
-  TransitionChild,
-} from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState } from "react";
-import { CustomerCard } from "../customer/CustomerCard";
-export const ProfileTransition = ({customers}) => {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+import { useState } from "react"
+export const ErrorProfileTransition=()=>{
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
   const openProfile = () => {
     setIsProfileOpen(true);
   };
@@ -50,19 +41,17 @@ export const ProfileTransition = ({customers}) => {
           >
             <DialogPanel
               className={
-                "fixed top-0 left-0 bottom-0 w-1/2 bg-white flex flex-col gap-2 items-center  p-2 overflow-y-scroll "
+                "fixed top-0 left-0 bottom-0 w-1/2 bg-white flex flex-col p-2"
               }
             >
-              <div className="flex h-[80px] items-center self-end">
-                <XMarkIcon onClick={closeProfile} className="h-10 hover:cursor-pointer" />
+              <div className="flex h-[80px] items-center justify-end">
+                <XMarkIcon onClick={closeProfile} className="h-10" />
               </div>
-              {
-                customers?.map(customer=><CustomerCard key={customer.id} customer={customer} />)
-              }
+              <p className="text-red-500">There is an error</p>
             </DialogPanel>
           </TransitionChild>
         </Dialog>
       </Transition>
     </>
-  );
-};
+  )
+}

@@ -1,8 +1,16 @@
+"use client"
+
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react"
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline"
-import { Fragment } from "react"
+import { Fragment,useState } from "react"
+import { Cart } from "./Cart"
+import { useCart } from "./CartContext"
+import { teko } from "@/app/fonts/fonts"
 
-export const CartTransition=({isCartOpen,setIsCartOpen})=>{
+export const CartTransition=()=>{
+  const {state}=useCart()
+  const itemNumber=state?.cart.length
+  const [isCartOpen,setIsCartOpen]=useState(false)
     const openCart = () => {
         setIsCartOpen(true);
       };
@@ -11,12 +19,12 @@ export const CartTransition=({isCartOpen,setIsCartOpen})=>{
       };
     
     return <>
-    <button
+    <div className="p-2 relative"
     aria-label="Open cart"
-    onClick={openCart}
   >
-    <ShoppingCartIcon className="h-5" />
-  </button>
+    <span className={`absolute top-0 left-0 text-red-600 ${teko.className}`}>{itemNumber ? itemNumber :''}</span>
+    <ShoppingCartIcon className="h-8"  onClick={openCart} />
+  </div>
   <Transition show={isCartOpen}>
     <Dialog className={"relative z-50"} onClose={closeCart}>
     <TransitionChild
@@ -39,6 +47,7 @@ export const CartTransition=({isCartOpen,setIsCartOpen})=>{
         <div className="flex h-[80px] items-center">
         <XMarkIcon onClick={closeCart} className="h-10"/>
         </div>
+        <Cart />
         </DialogPanel>
       </TransitionChild>
     </Dialog>

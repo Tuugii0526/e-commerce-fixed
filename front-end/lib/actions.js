@@ -6,28 +6,27 @@ const products=await sql`SELECT * FROM products`
 return products
 }
 export const fetchCustomers=async ()=>{
+try {
     const customers=await sql `SELECT * FROM  customers`
-    return customers
+    return {success:true,customers:customers}
+} catch (error) {
+    return {success:false}
+}    
 }
-export async function requestPassword(formData){
-    const reg=/^[^_][^\s]{3,}/
-    const password=formData.get('password')
-    console.log('password is:',password)
-    if(!password)
-    {
-        return null
-    }
-    if(!reg.test(password))
-    {
-        return null
+
+
+export async function requestPassword(name){
+    if(!name){
+        return {error:'Name is required'}
     }
     try {
         await sql`
     INSERT INTO test(password)
-    VALUES(${password})
+    VALUES(${name})
     `
-    return {status:"success"}
-    } catch (error) {
-        return null
+    return {success:true}
     }
+     catch (error) {
+        return {success:false}
     }
+}
