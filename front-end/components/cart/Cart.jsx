@@ -1,7 +1,9 @@
 
+import { useTransition } from "react"
 import { MinusIcon,PlusIcon } from "@heroicons/react/24/outline"
 import { useCart } from "./CartContext"
 export const Cart=()=>{
+    const [isPending,startTransition]=useTransition()
     const {state,addItem,minusItem}=useCart()
     const cart=state.cart
     const totalAmount=state.totalAmount
@@ -9,10 +11,14 @@ export const Cart=()=>{
             {cart.map(pro=><div  key={pro?.id} className="w-3/4 flex justify-around">
                 {pro?.name}
                 <MinusIcon className="h-5 hover:cursor-pointer" onClick={()=>{
+                    startTransition(()=>{
                     minusItem(pro)
+                    })
                 }}/>
                 <PlusIcon className="h-5 hover:cursor-pointer" onClick={()=>{
+                    startTransition(()=>{
                     addItem(pro)
+                    })
                     console.log('Iam working in addItem')
                 }}/>
                 {pro?.count*pro?.price}
